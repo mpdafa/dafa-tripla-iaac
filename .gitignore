@@ -1,0 +1,4 @@
+ap-southeast-1/.terraform
+ap-southeast-1/.terraform.lock.hcl
+ap-northeast-3/.terraform
+ap-northeast-3/.terraform.lock.hcl
