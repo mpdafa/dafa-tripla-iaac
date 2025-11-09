@@ -20,8 +20,8 @@ jobs:
         region: [ ap-southeast-1, ap-northeast-3 ]
     defaults:
       run:
-        working-directory: ./terraform
-    steps:
+        working-directory: ./${{ matrix.region }}
+        steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
