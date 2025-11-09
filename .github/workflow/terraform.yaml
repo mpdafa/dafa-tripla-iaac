@@ -1,0 +1,81 @@
+name: Tripla Terraform CI/CD
+
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ main ]
+
+env:
+  TF_VERSION: 1.12.2
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+jobs:
+  terraform-validate-plan:
+    name: "Terraform Validate & Plan (PR)"
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        region: [ ap-southeast-1, ap-northeast-3 ]
+    defaults:
+      run:
+        working-directory: ./terraform
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: ${{ env.TF_VERSION }}
+
+      - name: Set AWS Region
+        run: echo "AWS_REGION=${{ matrix.region }}" >> $GITHUB_ENV
+
+      - name: Terraform Init
+        run: terraform init -input=false
+
+      - name: Terraform Validate
+        run: terraform validate
+
+      - name: Terraform Plan
+        run: terraform plan -input=false -no-color -out=tfplan-${{ matrix.region }}.bin
+
+      - name: Show Plan Summary
+        run: terraform show -no-color tfplan-${{ matrix.region }}.bin
+
+  terraform-apply:
+    name: "Terraform Apply (Main Branch)"
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        region: [ ap-southeast-1, ap-northeast-3 ]
+    defaults:
+      run:
+        working-directory: ./terraform
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: ${{ env.TF_VERSION }}
+
+      - name: Set AWS Region
+        run: echo "AWS_REGION=${{ matrix.region }}" >> $GITHUB_ENV
+
+      - name: Terraform Init
+        run: terraform init -input=false
+
+      - name: Terraform Validate
+        run: terraform validate
+
+      - name: Terraform Plan
+        run: terraform plan -input=false -no-color -out=tfplan-${{ matrix.region }}.bin
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve tfplan-${{ matrix.region }}.bin
