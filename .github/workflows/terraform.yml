@@ -14,7 +14,6 @@ env:
 jobs:
   terraform-validate-plan:
     name: "Terraform Validate & Plan (PR)"
-    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     strategy:
       matrix:
