@@ -1,0 +1,878 @@
+terraform apply
+module.eks.module.eks_managed_node_group["default"].data.aws_caller_identity.current: Reading...
+data.aws_canonical_user_id.current: Reading...
+module.eks.module.kms.data.aws_caller_identity.current: Reading...
+module.eks.data.aws_caller_identity.current: Reading...
+module.eks.data.aws_partition.current: Reading...
+module.eks.data.aws_default_tags.current: Reading...
+module.eks.module.eks_managed_node_group["default"].data.aws_partition.current: Reading...
+module.eks.module.eks_managed_node_group["default"].data.aws_partition.current: Read complete after 0s [id=aws]
+module.eks.data.aws_default_tags.current: Read complete after 0s [id=aws]
+module.eks.data.aws_partition.current: Read complete after 0s [id=aws]
+aws_s3_bucket.static_assets_dummy_1: Refreshing state... [id=static-assets-dummy-1-20251109132747454200000001]
+module.eks.module.kms.data.aws_partition.current: Reading...
+aws_s3_bucket.static_assets_dummy_2: Refreshing state... [id=static-assets-dummy-2-20251109132747454200000002]
+module.eks.module.kms.data.aws_partition.current: Read complete after 0s [id=aws]
+module.eks.module.eks_managed_node_group["default"].data.aws_iam_policy_document.assume_role_policy[0]: Reading...
+module.eks.data.aws_iam_policy_document.assume_role_policy[0]: Reading...
+module.eks.module.eks_managed_node_group["default"].data.aws_iam_policy_document.assume_role_policy[0]: Read complete after 0s [id=2560088296]
+module.eks.data.aws_iam_policy_document.assume_role_policy[0]: Read complete after 0s [id=2764486067]
+data.aws_canonical_user_id.current: Read complete after 0s [id=7433980e0c05be5f1d20c5aa1ed3e9e0c1c497a8f4749bd7f37596e61bc757a7]
+aws_s3_bucket_ownership_controls.static_assets_dummy_2: Refreshing state... [id=static-assets-dummy-2-20251109132747454200000002]
+aws_s3_bucket_public_access_block.static_assets_dummy_2: Refreshing state... [id=static-assets-dummy-2-20251109132747454200000002]
+aws_s3_bucket_ownership_controls.static_assets_dummy_1: Refreshing state... [id=static-assets-dummy-1-20251109132747454200000001]
+aws_s3_bucket_acl.static_assets_dummy_1: Refreshing state... [id=static-assets-dummy-1-20251109132747454200000001]
+aws_s3_bucket_acl.static_assets_dummy_2: Refreshing state... [id=static-assets-dummy-2-20251109132747454200000002,public-read]
+module.eks.module.eks_managed_node_group["default"].data.aws_caller_identity.current: Read complete after 1s [id=291572331421]
+module.eks.module.kms.data.aws_caller_identity.current: Read complete after 1s [id=291572331421]
+module.eks.data.aws_caller_identity.current: Read complete after 1s [id=291572331421]
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+ <= read (data resources)
+
+Terraform will perform the following actions:
+
+  # module.eks.data.tls_certificate.this[0] will be read during apply
+  # (config refers to values not yet known)
+ <= data "tls_certificate" "this" {
+      + certificates = (known after apply)
+      + id           = (known after apply)
+      + url          = (known after apply)
+    }
+
+  # module.eks.aws_cloudwatch_log_group.this[0] will be created
+  + resource "aws_cloudwatch_log_group" "this" {
+      + arn               = (known after apply)
+      + id                = (known after apply)
+      + name              = "/aws/eks/dafa-tripla-eks/cluster"
+      + name_prefix       = (known after apply)
+      + retention_in_days = 90
+      + skip_destroy      = false
+      + tags              = {
+          + "Environment" = "staging"
+          + "ManagedBy"   = "terraform"
+          + "Project"     = "tripla-eks"
+        }
+      + tags_all          = {
+          + "Environment" = "staging"
+          + "ManagedBy"   = "terraform"
+          + "Project"     = "tripla-eks"
+        }
+    }
+
+  # module.eks.aws_ec2_tag.cluster_primary_security_group["Environment"] will be created
+  + resource "aws_ec2_tag" "cluster_primary_security_group" {
+      + id          = (known after apply)
+      + key         = "Environment"
+      + resource_id = (known after apply)
+      + value       = "staging"
+    }
+
+  # module.eks.aws_ec2_tag.cluster_primary_security_group["ManagedBy"] will be created
+  + resource "aws_ec2_tag" "cluster_primary_security_group" {
+      + id          = (known after apply)
+      + key         = "ManagedBy"
+      + resource_id = (known after apply)
+      + value       = "terraform"
+    }
+
+  # module.eks.aws_ec2_tag.cluster_primary_security_group["Project"] will be created
+  + resource "aws_ec2_tag" "cluster_primary_security_group" {
+      + id          = (known after apply)
+      + key         = "Project"
+      + resource_id = (known after apply)
+      + value       = "tripla-eks"
+    }
+
+  # module.eks.aws_eks_cluster.this[0] will be created
+  + resource "aws_eks_cluster" "this" {
+      + arn                       = (known after apply)
+      + certificate_authority     = (known after apply)
+      + cluster_id                = (known after apply)
+      + created_at                = (known after apply)
+      + enabled_cluster_log_types = [
+          + "api",
+          + "audit",
+          + "authenticator",
+          + "controllerManager",
+          + "scheduler",
+        ]
+      + endpoint                  = (known after apply)
+      + id                        = (known after apply)
+      + identity                  = (known after apply)
+      + name                      = "dafa-tripla-eks"
+      + platform_version          = (known after apply)
+      + role_arn                  = (known after apply)
+      + status                    = (known after apply)
+      + tags                      = {
+          + "Environment" = "staging"
+          + "ManagedBy"   = "terraform"
+          + "Project"     = "tripla-eks"
+        }
+      + tags_all                  = {
+          + "Environment" = "staging"
+          + "ManagedBy"   = "terraform"
+          + "Project"     = "tripla-eks"
+        }
+      + version                   = "1.33"
+
+      + kubernetes_network_config {
+          + ip_family         = (known after apply)
+          + service_ipv4_cidr = (known after apply)
+          + service_ipv6_cidr = (known after apply)
+        }
+
+      + timeouts {}
+
+      + vpc_config {
+          + cluster_security_group_id = (known after apply)
+          + endpoint_private_access   = true
+          + endpoint_public_access    = true
+          + public_access_cidrs       = [
+              + "118.99.81.165/32",
+            ]
+          + security_group_ids        = (known after apply)
+          + subnet_ids                = [
+              + "subnet-05a5378b281701998",
+              + "subnet-0afb2758cae7e6228",
+              + "subnet-0b029c0f5c74d2667",
+            ]
+          + vpc_id                    = (known after apply)
+        }
+    }
+
+  # module.eks.aws_iam_openid_connect_provider.oidc_provider[0] will be created
+  + resource "aws_iam_openid_connect_provider" "oidc_provider" {
+      + arn             = (known after apply)
+      + client_id_list  = [
+          + "sts.amazonaws.com",
+        ]
+      + id              = (known after apply)
+      + tags            = {
+          + "Environment" = "staging"
+          + "ManagedBy"   = "terraform"
+          + "Name"        = "dafa-tripla-eks-eks-irsa"
+          + "Project"     = "tripla-eks"
+        }
+      + tags_all        = {
+          + "Environment" = "staging"
+          + "ManagedBy"   = "terraform"
+          + "Name"        = "dafa-tripla-eks-eks-irsa"
+          + "Project"     = "tripla-eks"
+        }
+      + thumbprint_list = (known after apply)
+      + url             = (known after apply)
+    }
+
+  # module.eks.aws_iam_role.this[0] will be created
+  + resource "aws_iam_role" "this" {
+      + arn                   = (known after apply)
+      + assume_role_policy    = jsonencode(
+            {
+              + Statement = [
+                  + {
+                      + Action    = "sts:AssumeRole"
+                      + Effect    = "Allow"
+                      + Principal = {
+                          + Service = "eks.amazonaws.com"
+                        }
+                      + Sid       = "EKSClusterAssumeRole"
+                    },
+                ]
+              + Version   = "2012-10-17"
+            }
+        )
+      + create_date           = (known after apply)
+      + force_detach_policies = true
+      + id                    = (known after apply)
+      + managed_policy_arns   = (known after apply)
+      + max_session_duration  = 3600
+      + name                  = (known after apply)
+      + name_prefix           = "dafa-tripla-eks-cluster-"
+      + path                  = "/"
+      + role_last_used        = (known after apply)
+      + tags                  = {
+          + "Environment" = "staging"
+          + "ManagedBy"   = "terraform"
+          + "Project"     = "tripla-eks"
+        }
+      + tags_all              = {
+          + "Environment" = "staging"
+          + "ManagedBy"   = "terraform"
+          + "Project"     = "tripla-eks"
+        }
+      + unique_id             = (known after apply)
+
+      + inline_policy {
+          + name   = "dafa-tripla-eks-cluster"
+          + policy = jsonencode(
+                {
+                  + Statement = [
+                      + {
+                          + Action   = [
+                              + "logs:CreateLogGroup",
+                            ]
+                          + Effect   = "Deny"
+                          + Resource = "*"
+                        },
+                    ]
+                  + Version   = "2012-10-17"
+                }
+            )
+        }
+    }
+
+  # module.eks.aws_iam_role_policy_attachment.this["arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"] will be created
+  + resource "aws_iam_role_policy_attachment" "this" {
+      + id         = (known after apply)
+      + policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
+      + role       = (known after apply)
+    }
+
+  # module.eks.aws_iam_role_policy_attachment.this["arn:aws:iam::aws:policy/AmazonEKSVPCResourceController"] will be created
+  + resource "aws_iam_role_policy_attachment" "this" {
+      + id         = (known after apply)
+      + policy_arn = "arn:aws:iam::aws:policy/AmazonEKSVPCResourceController"
+      + role       = (known after apply)
+    }
+
+  # module.eks.aws_security_group.cluster[0] will be created
+  + resource "aws_security_group" "cluster" {
+      + arn                    = (known after apply)
+      + description            = "EKS cluster security group"
+      + egress                 = (known after apply)
+      + id                     = (known after apply)
+      + ingress                = (known after apply)
+      + name                   = (known after apply)
+      + name_prefix            = "dafa-tripla-eks-cluster-"
+      + owner_id               = (known after apply)
+      + revoke_rules_on_delete = false
+      + tags                   = {
+          + "Environment" = "staging"
+          + "ManagedBy"   = "terraform"
+          + "Name"        = "dafa-tripla-eks-cluster"
+          + "Project"     = "tripla-eks"
+        }
+      + tags_all               = {
+          + "Environment" = "staging"
+          + "ManagedBy"   = "terraform"
+          + "Name"        = "dafa-tripla-eks-cluster"
+          + "Project"     = "tripla-eks"
+        }
+      + vpc_id                 = "vpc-08ca0d3e9b7c5d657"
+    }
+
+  # module.eks.aws_security_group.node[0] will be created
+  + resource "aws_security_group" "node" {
+      + arn                    = (known after apply)
+      + description            = "EKS node shared security group"
+      + egress                 = (known after apply)
+      + id                     = (known after apply)
+      + ingress                = (known after apply)
+      + name                   = (known after apply)
+      + name_prefix            = "dafa-tripla-eks-node-"
+      + owner_id               = (known after apply)
+      + revoke_rules_on_delete = false
+      + tags                   = {
+          + "Environment"                           = "staging"
+          + "ManagedBy"                             = "terraform"
+          + "Name"                                  = "dafa-tripla-eks-node"
+          + "Project"                               = "tripla-eks"
+          + "kubernetes.io/cluster/dafa-tripla-eks" = "owned"
+        }
+      + tags_all               = {
+          + "Environment"                           = "staging"
+          + "ManagedBy"                             = "terraform"
+          + "Name"                                  = "dafa-tripla-eks-node"
+          + "Project"                               = "tripla-eks"
+          + "kubernetes.io/cluster/dafa-tripla-eks" = "owned"
+        }
+      + vpc_id                 = "vpc-08ca0d3e9b7c5d657"
+    }
+
+  # module.eks.aws_security_group_rule.cluster["egress_nodes_443"] will be created
+  + resource "aws_security_group_rule" "cluster" {
+      + description              = "Cluster API to node groups"
+      + from_port                = 443
+      + id                       = (known after apply)
+      + prefix_list_ids          = []
+      + protocol                 = "tcp"
+      + security_group_id        = (known after apply)
+      + security_group_rule_id   = (known after apply)
+      + self                     = false
+      + source_security_group_id = (known after apply)
+      + to_port                  = 443
+      + type                     = "egress"
+    }
+
+  # module.eks.aws_security_group_rule.cluster["egress_nodes_kubelet"] will be created
+  + resource "aws_security_group_rule" "cluster" {
+      + description              = "Cluster API to node kubelets"
+      + from_port                = 10250
+      + id                       = (known after apply)
+      + prefix_list_ids          = []
+      + protocol                 = "tcp"
+      + security_group_id        = (known after apply)
+      + security_group_rule_id   = (known after apply)
+      + self                     = false
+      + source_security_group_id = (known after apply)
+      + to_port                  = 10250
+      + type                     = "egress"
+    }
+
+  # module.eks.aws_security_group_rule.cluster["ingress_nodes_443"] will be created
+  + resource "aws_security_group_rule" "cluster" {
+      + description              = "Node groups to cluster API"
+      + from_port                = 443
+      + id                       = (known after apply)
+      + prefix_list_ids          = []
+      + protocol                 = "tcp"
+      + security_group_id        = (known after apply)
+      + security_group_rule_id   = (known after apply)
+      + self                     = false
+      + source_security_group_id = (known after apply)
+      + to_port                  = 443
+      + type                     = "ingress"
+    }
+
+  # module.eks.aws_security_group_rule.node["egress_cluster_443"] will be created
+  + resource "aws_security_group_rule" "node" {
+      + description              = "Node groups to cluster API"
+      + from_port                = 443
+      + id                       = (known after apply)
+      + prefix_list_ids          = []
+      + protocol                 = "tcp"
+      + security_group_id        = (known after apply)
+      + security_group_rule_id   = (known after apply)
+      + self                     = false
+      + source_security_group_id = (known after apply)
+      + to_port                  = 443
+      + type                     = "egress"
+    }
+
+  # module.eks.aws_security_group_rule.node["egress_https"] will be created
+  + resource "aws_security_group_rule" "node" {
+      + cidr_blocks              = [
+          + "0.0.0.0/0",
+        ]
+      + description              = "Egress all HTTPS to internet"
+      + from_port                = 443
+      + id                       = (known after apply)
+      + prefix_list_ids          = []
+      + protocol                 = "tcp"
+      + security_group_id        = (known after apply)
+      + security_group_rule_id   = (known after apply)
+      + self                     = false
+      + source_security_group_id = (known after apply)
+      + to_port                  = 443
+      + type                     = "egress"
+    }
+
+  # module.eks.aws_security_group_rule.node["egress_ntp_tcp"] will be created
+  + resource "aws_security_group_rule" "node" {
+      + cidr_blocks              = [
+          + "0.0.0.0/0",
+        ]
+      + description              = "Egress NTP/TCP to internet"
+      + from_port                = 123
+      + id                       = (known after apply)
+      + prefix_list_ids          = []
+      + protocol                 = "tcp"
+      + security_group_id        = (known after apply)
+      + security_group_rule_id   = (known after apply)
+      + self                     = false
+      + source_security_group_id = (known after apply)
+      + to_port                  = 123
+      + type                     = "egress"
+    }
+
+  # module.eks.aws_security_group_rule.node["egress_ntp_udp"] will be created
+  + resource "aws_security_group_rule" "node" {
+      + cidr_blocks              = [
+          + "0.0.0.0/0",
+        ]
+      + description              = "Egress NTP/UDP to internet"
+      + from_port                = 123
+      + id                       = (known after apply)
+      + prefix_list_ids          = []
+      + protocol                 = "udp"
+      + security_group_id        = (known after apply)
+      + security_group_rule_id   = (known after apply)
+      + self                     = false
+      + source_security_group_id = (known after apply)
+      + to_port                  = 123
+      + type                     = "egress"
+    }
+
+  # module.eks.aws_security_group_rule.node["egress_self_coredns_tcp"] will be created
+  + resource "aws_security_group_rule" "node" {
+      + description              = "Node to node CoreDNS"
+      + from_port                = 53
+      + id                       = (known after apply)
+      + prefix_list_ids          = []
+      + protocol                 = "tcp"
+      + security_group_id        = (known after apply)
+      + security_group_rule_id   = (known after apply)
+      + self                     = true
+      + source_security_group_id = (known after apply)
+      + to_port                  = 53
+      + type                     = "egress"
+    }
+
+  # module.eks.aws_security_group_rule.node["egress_self_coredns_udp"] will be created
+  + resource "aws_security_group_rule" "node" {
+      + description              = "Node to node CoreDNS"
+      + from_port                = 53
+      + id                       = (known after apply)
+      + prefix_list_ids          = []
+      + protocol                 = "udp"
+      + security_group_id        = (known after apply)
+      + security_group_rule_id   = (known after apply)
+      + self                     = true
+      + source_security_group_id = (known after apply)
+      + to_port                  = 53
+      + type                     = "egress"
+    }
+
+  # module.eks.aws_security_group_rule.node["ingress_cluster_443"] will be created
+  + resource "aws_security_group_rule" "node" {
+      + description              = "Cluster API to node groups"
+      + from_port                = 443
+      + id                       = (known after apply)
+      + prefix_list_ids          = []
+      + protocol                 = "tcp"
+      + security_group_id        = (known after apply)
+      + security_group_rule_id   = (known after apply)
+      + self                     = false
+      + source_security_group_id = (known after apply)
+      + to_port                  = 443
+      + type                     = "ingress"
+    }
+
+  # module.eks.aws_security_group_rule.node["ingress_cluster_kubelet"] will be created
+  + resource "aws_security_group_rule" "node" {
+      + description              = "Cluster API to node kubelets"
+      + from_port                = 10250
+      + id                       = (known after apply)
+      + prefix_list_ids          = []
+      + protocol                 = "tcp"
+      + security_group_id        = (known after apply)
+      + security_group_rule_id   = (known after apply)
+      + self                     = false
+      + source_security_group_id = (known after apply)
+      + to_port                  = 10250
+      + type                     = "ingress"
+    }
+
+  # module.eks.aws_security_group_rule.node["ingress_self_coredns_tcp"] will be created
+  + resource "aws_security_group_rule" "node" {
+      + description              = "Node to node CoreDNS"
+      + from_port                = 53
+      + id                       = (known after apply)
+      + prefix_list_ids          = []
+      + protocol                 = "tcp"
+      + security_group_id        = (known after apply)
+      + security_group_rule_id   = (known after apply)
+      + self                     = true
+      + source_security_group_id = (known after apply)
+      + to_port                  = 53
+      + type                     = "ingress"
+    }
+
+  # module.eks.aws_security_group_rule.node["ingress_self_coredns_udp"] will be created
+  + resource "aws_security_group_rule" "node" {
+      + description              = "Node to node CoreDNS"
+      + from_port                = 53
+      + id                       = (known after apply)
+      + prefix_list_ids          = []
+      + protocol                 = "udp"
+      + security_group_id        = (known after apply)
+      + security_group_rule_id   = (known after apply)
+      + self                     = true
+      + source_security_group_id = (known after apply)
+      + to_port                  = 53
+      + type                     = "ingress"
+    }
+
+  # module.eks.kubernetes_config_map_v1_data.aws_auth[0] will be created
+  + resource "kubernetes_config_map_v1_data" "aws_auth" {
+      + data          = (known after apply)
+      + field_manager = "Terraform"
+      + force         = true
+      + id            = (known after apply)
+
+      + metadata {
+          + name      = "aws-auth"
+          + namespace = "kube-system"
+        }
+    }
+
+  # module.eks.module.eks_managed_node_group["default"].aws_eks_node_group.this[0] will be created
+  + resource "aws_eks_node_group" "this" {
+      + ami_type               = (known after apply)
+      + arn                    = (known after apply)
+      + capacity_type          = "ON_DEMAND"
+      + cluster_name           = "dafa-tripla-eks"
+      + disk_size              = (known after apply)
+      + id                     = (known after apply)
+      + instance_types         = [
+          + "t3.small",
+        ]
+      + labels                 = {
+          + "role" = "general"
+        }
+      + node_group_name        = (known after apply)
+      + node_group_name_prefix = "dafa-tripla-eks-"
+      + node_role_arn          = (known after apply)
+      + release_version        = (known after apply)
+      + resources              = (known after apply)
+      + status                 = (known after apply)
+      + subnet_ids             = [
+          + "subnet-05a5378b281701998",
+          + "subnet-0afb2758cae7e6228",
+          + "subnet-0b029c0f5c74d2667",
+        ]
+      + tags                   = {
+          + "Environment"              = "staging"
+          + "ManagedBy"                = "terraform"
+          + "Name"                     = "dafa-tripla-eks"
+          + "Project"                  = "tripla-eks"
+          + "iam_role_use_name_prefix" = "false"
+        }
+      + tags_all               = {
+          + "Environment"              = "staging"
+          + "ManagedBy"                = "terraform"
+          + "Name"                     = "dafa-tripla-eks"
+          + "Project"                  = "tripla-eks"
+          + "iam_role_use_name_prefix" = "false"
+        }
+      + version                = "1.33"
+
+      + launch_template {
+          + id      = (known after apply)
+          + name    = (known after apply)
+          + version = (known after apply)
+        }
+
+      + scaling_config {
+          + desired_size = 2
+          + max_size     = 3
+          + min_size     = 1
+        }
+
+      + timeouts {}
+
+      + update_config (known after apply)
+    }
+
+  # module.eks.module.eks_managed_node_group["default"].aws_iam_role.this[0] will be created
+  + resource "aws_iam_role" "this" {
+      + arn                   = (known after apply)
+      + assume_role_policy    = jsonencode(
+            {
+              + Statement = [
+                  + {
+                      + Action    = "sts:AssumeRole"
+                      + Effect    = "Allow"
+                      + Principal = {
+                          + Service = "ec2.amazonaws.com"
+                        }
+                      + Sid       = "EKSNodeAssumeRole"
+                    },
+                ]
+              + Version   = "2012-10-17"
+            }
+        )
+      + create_date           = (known after apply)
+      + description           = "EKS managed node group IAM role"
+      + force_detach_policies = true
+      + id                    = (known after apply)
+      + managed_policy_arns   = (known after apply)
+      + max_session_duration  = 3600
+      + name                  = (known after apply)
+      + name_prefix           = "dafa-tripla-eks-eks-node-group-"
+      + path                  = "/"
+      + role_last_used        = (known after apply)
+      + tags                  = {
+          + "Environment"              = "staging"
+          + "ManagedBy"                = "terraform"
+          + "Name"                     = "dafa-tripla-eks-default"
+          + "Project"                  = "tripla-eks"
+          + "iam_role_use_name_prefix" = "false"
+        }
+      + tags_all              = {
+          + "Environment"              = "staging"
+          + "ManagedBy"                = "terraform"
+          + "Name"                     = "dafa-tripla-eks-default"
+          + "Project"                  = "tripla-eks"
+          + "iam_role_use_name_prefix" = "false"
+        }
+      + unique_id             = (known after apply)
+
+      + inline_policy (known after apply)
+    }
+
+  # module.eks.module.eks_managed_node_group["default"].aws_iam_role_policy_attachment.this["arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"] will be created
+  + resource "aws_iam_role_policy_attachment" "this" {
+      + id         = (known after apply)
+      + policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
+      + role       = (known after apply)
+    }
+
+  # module.eks.module.eks_managed_node_group["default"].aws_iam_role_policy_attachment.this["arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"] will be created
+  + resource "aws_iam_role_policy_attachment" "this" {
+      + id         = (known after apply)
+      + policy_arn = "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"
+      + role       = (known after apply)
+    }
+
+  # module.eks.module.eks_managed_node_group["default"].aws_iam_role_policy_attachment.this["arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy"] will be created
+  + resource "aws_iam_role_policy_attachment" "this" {
+      + id         = (known after apply)
+      + policy_arn = "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy"
+      + role       = (known after apply)
+    }
+
+  # module.eks.module.eks_managed_node_group["default"].aws_launch_template.this[0] will be created
+  + resource "aws_launch_template" "this" {
+      + arn                    = (known after apply)
+      + default_version        = (known after apply)
+      + description            = "Custom launch template for dafa-tripla-eks EKS managed node group"
+      + id                     = (known after apply)
+      + latest_version         = (known after apply)
+      + name                   = (known after apply)
+      + name_prefix            = "default-"
+      + tags                   = {
+          + "Environment"              = "staging"
+          + "ManagedBy"                = "terraform"
+          + "Name"                     = "dafa-tripla-eks-default"
+          + "Project"                  = "tripla-eks"
+          + "iam_role_use_name_prefix" = "false"
+        }
+      + tags_all               = {
+          + "Environment"              = "staging"
+          + "ManagedBy"                = "terraform"
+          + "Name"                     = "dafa-tripla-eks-default"
+          + "Project"                  = "tripla-eks"
+          + "iam_role_use_name_prefix" = "false"
+        }
+      + update_default_version = true
+      + vpc_security_group_ids = (known after apply)
+        # (2 unchanged attributes hidden)
+
+      + metadata_options {
+          + http_endpoint               = "enabled"
+          + http_protocol_ipv6          = "disabled"
+          + http_put_response_hop_limit = 2
+          + http_tokens                 = "required"
+          + instance_metadata_tags      = "disabled"
+        }
+
+      + monitoring {
+          + enabled = true
+        }
+
+      + tag_specifications {
+          + resource_type = "instance"
+          + tags          = {
+              + "Environment"              = "staging"
+              + "ManagedBy"                = "terraform"
+              + "Name"                     = "dafa-tripla-eks"
+              + "Project"                  = "tripla-eks"
+              + "iam_role_use_name_prefix" = "false"
+            }
+        }
+      + tag_specifications {
+          + resource_type = "network-interface"
+          + tags          = {
+              + "Environment"              = "staging"
+              + "ManagedBy"                = "terraform"
+              + "Name"                     = "dafa-tripla-eks"
+              + "Project"                  = "tripla-eks"
+              + "iam_role_use_name_prefix" = "false"
+            }
+        }
+      + tag_specifications {
+          + resource_type = "volume"
+          + tags          = {
+              + "Environment"              = "staging"
+              + "ManagedBy"                = "terraform"
+              + "Name"                     = "dafa-tripla-eks"
+              + "Project"                  = "tripla-eks"
+              + "iam_role_use_name_prefix" = "false"
+            }
+        }
+    }
+
+  # module.eks.module.eks_managed_node_group["default"].aws_security_group.this[0] will be created
+  + resource "aws_security_group" "this" {
+      + arn                    = (known after apply)
+      + description            = "EKS managed node group security group"
+      + egress                 = (known after apply)
+      + id                     = (known after apply)
+      + ingress                = (known after apply)
+      + name                   = (known after apply)
+      + name_prefix            = "dafa-tripla-eks-eks-node-group-"
+      + owner_id               = (known after apply)
+      + revoke_rules_on_delete = false
+      + tags                   = {
+          + "Environment"              = "staging"
+          + "ManagedBy"                = "terraform"
+          + "Name"                     = "dafa-tripla-eks-eks-node-group"
+          + "Project"                  = "tripla-eks"
+          + "iam_role_use_name_prefix" = "false"
+        }
+      + tags_all               = {
+          + "Environment"              = "staging"
+          + "ManagedBy"                = "terraform"
+          + "Name"                     = "dafa-tripla-eks-eks-node-group"
+          + "Project"                  = "tripla-eks"
+          + "iam_role_use_name_prefix" = "false"
+        }
+      + vpc_id                 = "vpc-08ca0d3e9b7c5d657"
+    }
+
+Plan: 32 to add, 0 to change, 0 to destroy.
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+module.eks.aws_cloudwatch_log_group.this[0]: Creating...
+module.eks.aws_security_group.node[0]: Creating...
+module.eks.module.eks_managed_node_group["default"].aws_security_group.this[0]: Creating...
+module.eks.aws_security_group.cluster[0]: Creating...
+module.eks.module.eks_managed_node_group["default"].aws_iam_role.this[0]: Creating...
+module.eks.aws_iam_role.this[0]: Creating...
+module.eks.aws_cloudwatch_log_group.this[0]: Creation complete after 1s [id=/aws/eks/dafa-tripla-eks/cluster]
+module.eks.module.eks_managed_node_group["default"].aws_security_group.this[0]: Creation complete after 2s [id=sg-0fab1ae44e2c5dff2]
+module.eks.aws_security_group.node[0]: Creation complete after 2s [id=sg-0f95ca9bf46279fda]
+module.eks.aws_security_group.cluster[0]: Creation complete after 2s [id=sg-007dd2a5b93e8c1dc]
+module.eks.aws_security_group_rule.node["ingress_self_coredns_tcp"]: Creating...
+module.eks.aws_security_group_rule.cluster["ingress_nodes_443"]: Creating...
+module.eks.aws_security_group_rule.cluster["egress_nodes_443"]: Creating...
+module.eks.aws_security_group_rule.cluster["egress_nodes_kubelet"]: Creating...
+module.eks.aws_security_group_rule.node["egress_ntp_udp"]: Creating...
+module.eks.aws_security_group_rule.node["egress_self_coredns_udp"]: Creating...
+module.eks.aws_security_group_rule.node["egress_https"]: Creating...
+module.eks.aws_security_group_rule.node["egress_ntp_tcp"]: Creating...
+module.eks.module.eks_managed_node_group["default"].aws_iam_role.this[0]: Creation complete after 2s [id=dafa-tripla-eks-eks-node-group-20251109164924490500000004]
+module.eks.aws_security_group_rule.node["ingress_cluster_kubelet"]: Creating...
+module.eks.aws_security_group_rule.cluster["ingress_nodes_443"]: Creation complete after 1s [id=sgrule-69529884]
+module.eks.aws_security_group_rule.node["ingress_self_coredns_udp"]: Creating...
+module.eks.aws_security_group_rule.node["egress_self_coredns_udp"]: Creation complete after 1s [id=sgrule-793046311]
+module.eks.aws_security_group_rule.node["egress_cluster_443"]: Creating...
+module.eks.aws_iam_role.this[0]: Creation complete after 3s [id=dafa-tripla-eks-cluster-20251109164924491100000005]
+module.eks.aws_security_group_rule.node["egress_self_coredns_tcp"]: Creating...
+module.eks.aws_security_group_rule.cluster["egress_nodes_443"]: Creation complete after 1s [id=sgrule-752550037]
+module.eks.aws_security_group_rule.node["ingress_cluster_443"]: Creating...
+module.eks.aws_security_group_rule.node["ingress_self_coredns_tcp"]: Creation complete after 1s [id=sgrule-2232885182]
+module.eks.module.eks_managed_node_group["default"].aws_iam_role_policy_attachment.this["arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"]: Creating...
+module.eks.aws_security_group_rule.cluster["egress_nodes_kubelet"]: Creation complete after 2s [id=sgrule-1770291365]
+module.eks.module.eks_managed_node_group["default"].aws_iam_role_policy_attachment.this["arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy"]: Creating...
+module.eks.aws_security_group_rule.node["egress_ntp_udp"]: Creation complete after 2s [id=sgrule-513621294]
+module.eks.module.eks_managed_node_group["default"].aws_iam_role_policy_attachment.this["arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"]: Creating...
+module.eks.module.eks_managed_node_group["default"].aws_iam_role_policy_attachment.this["arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"]: Creation complete after 1s [id=dafa-tripla-eks-eks-node-group-20251109164924490500000004-20251109164927753700000006]
+module.eks.aws_iam_role_policy_attachment.this["arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"]: Creating...
+module.eks.aws_security_group_rule.node["egress_https"]: Creation complete after 3s [id=sgrule-3218941245]
+module.eks.aws_iam_role_policy_attachment.this["arn:aws:iam::aws:policy/AmazonEKSVPCResourceController"]: Creating...
+module.eks.module.eks_managed_node_group["default"].aws_iam_role_policy_attachment.this["arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy"]: Creation complete after 1s [id=dafa-tripla-eks-eks-node-group-20251109164924490500000004-20251109164928263000000007]
+module.eks.module.eks_managed_node_group["default"].aws_iam_role_policy_attachment.this["arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"]: Creation complete after 1s [id=dafa-tripla-eks-eks-node-group-20251109164924490500000004-20251109164928359700000008]
+module.eks.aws_iam_role_policy_attachment.this["arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"]: Creation complete after 1s [id=dafa-tripla-eks-cluster-20251109164924491100000005-20251109164928619100000009]
+module.eks.aws_security_group_rule.node["egress_ntp_tcp"]: Creation complete after 3s [id=sgrule-1610815523]
+module.eks.aws_iam_role_policy_attachment.this["arn:aws:iam::aws:policy/AmazonEKSVPCResourceController"]: Creation complete after 0s [id=dafa-tripla-eks-cluster-20251109164924491100000005-2025110916492895070000000a]
+module.eks.aws_security_group_rule.node["ingress_cluster_kubelet"]: Creation complete after 4s [id=sgrule-2250903710]
+module.eks.aws_security_group_rule.node["ingress_self_coredns_udp"]: Creation complete after 3s [id=sgrule-558414929]
+module.eks.aws_security_group_rule.node["egress_cluster_443"]: Creation complete after 4s [id=sgrule-1657420165]
+module.eks.aws_security_group_rule.node["egress_self_coredns_tcp"]: Creation complete after 4s [id=sgrule-2703454017]
+module.eks.aws_security_group_rule.node["ingress_cluster_443"]: Creation complete after 5s [id=sgrule-890307247]
+module.eks.aws_eks_cluster.this[0]: Creating...
+module.eks.aws_eks_cluster.this[0]: Still creating... [10s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [20s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [30s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [40s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [50s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [1m0s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [1m10s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [1m20s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [1m30s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [1m40s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [1m50s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [2m0s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [2m10s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [2m20s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [2m30s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [2m40s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [2m50s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [3m0s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [3m10s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [3m20s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [3m30s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [3m40s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [3m50s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [4m0s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [4m10s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [4m20s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [4m30s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [4m40s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [4m50s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [5m0s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [5m10s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [5m20s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [5m30s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [5m40s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [5m50s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [6m0s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [6m10s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [6m20s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [6m30s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [6m40s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [6m50s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [7m0s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [7m10s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [7m20s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [7m30s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [7m40s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [7m50s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [8m0s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [8m10s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [8m20s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [8m30s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [8m40s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [8m50s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [9m0s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [9m10s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [9m20s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [9m30s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [9m40s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still creating... [9m50s elapsed]
+module.eks.aws_eks_cluster.this[0]: Creation complete after 9m56s [id=dafa-tripla-eks]
+module.eks.aws_ec2_tag.cluster_primary_security_group["Environment"]: Creating...
+module.eks.aws_ec2_tag.cluster_primary_security_group["ManagedBy"]: Creating...
+module.eks.aws_ec2_tag.cluster_primary_security_group["Project"]: Creating...
+module.eks.data.tls_certificate.this[0]: Reading...
+module.eks.module.eks_managed_node_group["default"].aws_launch_template.this[0]: Creating...
+module.eks.data.tls_certificate.this[0]: Read complete after 0s [id=923e879def9bf38b36fa8072440dfc9e77c41ccb]
+module.eks.aws_iam_openid_connect_provider.oidc_provider[0]: Creating...
+module.eks.aws_ec2_tag.cluster_primary_security_group["Project"]: Creation complete after 1s [id=sg-06228b9e006a276d2,Project]
+module.eks.aws_ec2_tag.cluster_primary_security_group["ManagedBy"]: Creation complete after 1s [id=sg-06228b9e006a276d2,ManagedBy]
+module.eks.module.eks_managed_node_group["default"].aws_launch_template.this[0]: Creation complete after 1s [id=lt-028a8deee7157a850]
+module.eks.module.eks_managed_node_group["default"].aws_eks_node_group.this[0]: Creating...
+module.eks.aws_ec2_tag.cluster_primary_security_group["Environment"]: Creation complete after 1s [id=sg-06228b9e006a276d2,Environment]
+module.eks.aws_iam_openid_connect_provider.oidc_provider[0]: Creation complete after 2s [id=arn:aws:iam::291572331421:oidc-provider/oidc.eks.ap-southeast-1.amazonaws.com/id/2F591824342992D84664848A6212EAE6]
+module.eks.module.eks_managed_node_group["default"].aws_eks_node_group.this[0]: Still creating... [10s elapsed]
+module.eks.module.eks_managed_node_group["default"].aws_eks_node_group.this[0]: Still creating... [20s elapsed]
+module.eks.module.eks_managed_node_group["default"].aws_eks_node_group.this[0]: Still creating... [30s elapsed]
+module.eks.module.eks_managed_node_group["default"].aws_eks_node_group.this[0]: Still creating... [40s elapsed]
+module.eks.module.eks_managed_node_group["default"].aws_eks_node_group.this[0]: Still creating... [50s elapsed]
+module.eks.module.eks_managed_node_group["default"].aws_eks_node_group.this[0]: Still creating... [1m0s elapsed]
+module.eks.module.eks_managed_node_group["default"].aws_eks_node_group.this[0]: Still creating... [1m10s elapsed]
+module.eks.module.eks_managed_node_group["default"].aws_eks_node_group.this[0]: Still creating... [1m20s elapsed]
+module.eks.module.eks_managed_node_group["default"].aws_eks_node_group.this[0]: Still creating... [1m30s elapsed]
+module.eks.module.eks_managed_node_group["default"].aws_eks_node_group.this[0]: Still creating... [1m40s elapsed]
+module.eks.module.eks_managed_node_group["default"].aws_eks_node_group.this[0]: Still creating... [1m50s elapsed]
+module.eks.module.eks_managed_node_group["default"].aws_eks_node_group.this[0]: Still creating... [2m0s elapsed]
+module.eks.module.eks_managed_node_group["default"].aws_eks_node_group.this[0]: Creation complete after 17m7s [id=dafa-tripla-eks:dafa-tripla-eks-2025110916592855210000000d]

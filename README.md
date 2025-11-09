@@ -5,10 +5,17 @@ Repo structure
 
 DAFA-TRIPLA-IAAC/
 ├── ap-southeast-1/ # Singapore region
-│   ├── main.tf 
+│   ├── s3.tf 
+│   ├── eks.tf 
 │   └── backend.tf
 ├── ap-northeast-3/ # Japan region
 │   ├── main.tf
 │   └── backend.tf
 └── README.md
 ```
+
+List all VPC
+aws ec2 describe-vpcs --region ap-southeast-1
+
+List all Subnets
+aws ec2 describe-subnets --region ap-southeast-1
