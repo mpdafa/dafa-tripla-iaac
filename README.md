@@ -1,7 +1,7 @@
 ## Terraform Repositories for SRE Interview Task
 This repo contains Terraform IAAC for deploying and managing AWS resources accross multiple regions. To implement a good gitoops practices, this repo will also integrated with terraform parse services which act as a service that can raises Merge Requests (MRs) when new infra is requested from user using http payload from frontend.
 
-**Repo structure**
+### Repo structure
 ```txt
 DAFA-TRIPLA-IAAC/
 ├── .github/workflows/terraform.yml
@@ -15,7 +15,7 @@ DAFA-TRIPLA-IAAC/
 └── README.md
 ```
 
-**CI/CD Workflow Overview**
+### CI/CD Workflow Overview
 The github actions workflow automates *Terraform validation, planning, and apply* processes for each of the region. TF changes can only be applied once the PR is reviewed and merged to main which refers to github.ref that have been set in the workflows. (TODO : Add CODEOWNERS for each resource file)
 
 **AWS CLI Command**
