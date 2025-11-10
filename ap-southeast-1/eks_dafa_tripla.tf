@@ -10,7 +10,7 @@ module "eks" {
 
   cluster_endpoint_public_access          = true
   cluster_endpoint_private_access         = true
-  cluster_endpoint_public_access_cidrs    = ["118.99.81.165/32"] # My Home IP
+  # cluster_endpoint_public_access_cidrs    = ["118.99.81.165/32"] # My Home IP
 
   # Enable logging for observability
   cluster_enabled_log_types = ["api", "audit", "authenticator", "controllerManager", "scheduler"]
