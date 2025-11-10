@@ -11,7 +11,7 @@ env:
 
 jobs:
   terraform-validate-plan:
-    name: "Terraform Validate & Plan (PR)"
+    name: "Terraform Plan"
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -47,8 +47,8 @@ jobs:
         run: terraform show -no-color tfplan-${{ matrix.region }}.bin
 
   terraform-apply:
-    name: "Terraform Apply (Main Branch)"
-    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'
+    name: "Terraform Apply"
+    if: github.ref == 'refs/heads/main'
     needs: terraform-validate-plan
     runs-on: ubuntu-latest
     strategy:
