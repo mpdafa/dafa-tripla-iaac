@@ -48,7 +48,7 @@ jobs:
 
   terraform-apply:
     name: "Terraform Apply (Main Branch)"
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'
     needs: terraform-validate-plan
     runs-on: ubuntu-latest
     strategy:
