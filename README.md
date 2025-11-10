@@ -4,6 +4,7 @@ This repo contains Terraform IAAC for deploying and managing AWS resources accro
 **Repo structure**
 ```txt
 DAFA-TRIPLA-IAAC/
+├── .github/workflows/terraform.yml
 ├── ap-southeast-1/ # Singapore region
 │   ├── s3.tf 
 │   ├── eks.tf 
@@ -13,6 +14,9 @@ DAFA-TRIPLA-IAAC/
 │   └── backend.tf
 └── README.md
 ```
+
+**CI/CD Workflow Overview**
+The github actions workflow automates *Terraform validation, planning, and apply* processes for each of the region. TF changes can only be applied once the PR is reviewed and merged to main which refers to github.ref that have been set in the workflows. (TODO : Add CODEOWNERS for each resource file)
 
 **AWS CLI Command**
 ```shell
